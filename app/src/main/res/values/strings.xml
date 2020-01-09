@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Github Actions Demo</string>
-    <string name="app_version">v1.1</string>
+    <string name="app_version">App Version: %1$s</string>
 </resources>
