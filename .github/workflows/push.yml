@@ -1,7 +1,7 @@
 name: Push Dump
 
 on: 
-  pull_request:
+  push:
 
 jobs:
   one:
