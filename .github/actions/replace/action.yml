@@ -1,0 +1,22 @@
+name: 'Replace string'
+author: 'Brad Ball'
+description: 'Replace occurrences of one string in another string'
+inputs:
+  input:
+    description: 'The input string to search'
+    required: true
+  replace:
+    description: 'The sub string to find in the input string'
+    required: true
+  with:
+    description: 'The replacement string'
+    required: true
+outputs:
+  result:
+    description: 'The output string'
+runs:
+  using: 'node12'
+  main: 'replace.js'
+branding:
+  icon: 'search'
+  color: gray-dark
