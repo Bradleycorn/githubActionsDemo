@@ -1,10 +1,13 @@
 name: Android CI
 
-on: [push]
-
+on: 
+  push:
+    branches:
+      - release_*
+  
 jobs:
   build:
-
+    name: Create Release
     runs-on: ubuntu-latest
 
     steps:
@@ -13,5 +16,12 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: rep  
     - name: Build with Gradle
       run: ./gradlew assembleDebug
