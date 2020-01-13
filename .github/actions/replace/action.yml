@@ -11,6 +11,10 @@ inputs:
   with:
     description: 'The replacement string'
     required: true
+  case-sensitive:
+    description: 'Do a case sensitive find/replace'
+    required: false
+    default: false
 outputs:
   result:
     description: 'The output string'
