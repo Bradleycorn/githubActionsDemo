@@ -22,7 +22,7 @@ jobs:
       uses: frabert/replace-string-action@v1.1
       with:
         string: ${{ github.ref }}
-        pattern: 'ref\/heads\/release_'
+        pattern: 'refs/heads/release_'
         replace-with: ''
     - name: Create Release
       id: create_release
