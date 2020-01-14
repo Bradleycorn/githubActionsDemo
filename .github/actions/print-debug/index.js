@@ -987,7 +987,7 @@ function run() {
                     }
                 }
             };
-            yield exec.exec('gradlew', ['printDebug'], options);
+            yield exec.exec('./gradlew', ['printDebug'], options);
             core.setOutput('theOutput', myOutput);
             core.setOutput('theError', myError);
         }
