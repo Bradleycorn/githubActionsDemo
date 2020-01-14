@@ -27,6 +27,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.version_number.outputs.replaced }}
+        target_commitish: ${{ github.ref }}
         release_name: ${{ steps.version_number.outputs.replaced }}
         draft: true
         prerelease: if (contains(steps.version_number.outputs.replaced, 'alpha') || contains(steps.version_number_outputs.replaced, 'beta'))
