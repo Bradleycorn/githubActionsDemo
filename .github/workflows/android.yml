@@ -20,8 +20,6 @@ jobs:
         string: ${{ github.ref }}
         pattern: 'refs/heads/release_'
         replace-with: ''
-    - name: Print Debug
-      uses: ./.github/acions/print-debug   
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -36,6 +34,13 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8    
+    - name: Print Debug
+      id: print_debug
+      uses: ./.github/acions/print-debug
+    - name: Dump PrintDebug context
+      env:
+        MY_OUTPUT: ${{ steps.print_debug.outputs.theOutput }}
+      run: echo "$MY_OUTPUT"
     - name: Build with Gradle
       run: ./gradlew assembleDebug
     - name: Upload Release Asset
