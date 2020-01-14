@@ -20,6 +20,13 @@ jobs:
         string: ${{ github.ref }}
         pattern: 'refs/heads/release_'
         replace-with: ''
+    - name: Get Release Branch
+      id: release_branch
+      uses: frabert/replace-string-action@v1.1
+      with:
+        string: ${{ github.ref }}
+        pattern: 'refs/heads/'
+        replace-with: ''
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -27,6 +34,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.version_number.outputs.replaced }}
+        target_commitish: ${{ steps.release_branch.outputs.replaced }}
         release_name: ${{ steps.version_number.outputs.replaced }}
         draft: true
         prerelease: if (contains(steps.version_number.outputs.replaced, 'alpha') || contains(steps.version_number_outputs.replaced, 'beta'))
@@ -34,6 +42,13 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8    
+    - name: Print Debug
+      id: print_debug
+      uses: ./.github/actions/print-debug
+    - name: Dump PrintDebug context
+      env:
+        MY_OUTPUT: ${{ steps.print_debug.outputs.theOutput }}
+      run: echo "$MY_OUTPUT"
     - name: Build with Gradle
       run: ./gradlew assembleDebug
     - name: Upload Release Asset

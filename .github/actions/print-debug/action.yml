@@ -1,0 +1,16 @@
+name: 'Read Java Properties'
+description: 'Provide a description here'
+author: 'Your name or organization here'
+inputs:
+  myInput:              # change this
+    description: 'input description here'
+    default: 'default value if applicable'
+    required: false
+outputs:
+  theOutput:
+    description: 'the output'
+  theError:
+    description: 'the error'
+runs:
+  using: 'node12'
+  main: 'index.js'
