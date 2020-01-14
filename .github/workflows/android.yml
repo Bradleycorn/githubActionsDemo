@@ -20,6 +20,8 @@ jobs:
         string: ${{ github.ref }}
         pattern: 'refs/heads/release_'
         replace-with: ''
+    - name: Print Debug
+      uses: ./.github/acions/print-debug   
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
