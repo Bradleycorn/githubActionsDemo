@@ -980,7 +980,10 @@ function run() {
             const options = {
                 listeners: {
                     stdout: (data) => {
-                        myOutput += ' +++ '.concat(data.toString());
+                        const output = data.toString();
+                        if (output.startsWith('output:')) {
+                            myOutput += output;
+                        }
                     },
                     stderr: (data) => {
                         myError += data.toString();
