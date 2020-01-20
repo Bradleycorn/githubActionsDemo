@@ -1,0 +1,22 @@
+name: Deploy Release
+
+on:
+  push:
+    branches:
+      - pr-close
+    release:
+      types: [published]
+
+jobs:
+  - name: Dump GitHub context
+    id: github_step
+    env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
+    run: echo "$GITHUB_CONTEXT"  
+  - name: Get Version Number
+    id: version_number
+    uses: frabert/replace-string-action@v1.1
+    with:
+      string: ${{ github.ref }}
+      pattern: 'refs/heads/release_'
+      replace-with: ''
